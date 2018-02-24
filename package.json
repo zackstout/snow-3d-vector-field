@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "p5": "^0.6.0",
     "physijs": "0.0.4",
     "three": "^0.90.0",
     "three-orbit-controls": "^82.1.0"
