@@ -1,0 +1,16 @@
+{
+  "name": "snow-3d",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bundle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "physijs": "0.0.4",
+    "three": "^0.90.0",
+    "three-orbit-controls": "^82.1.0"
+  }
+}
