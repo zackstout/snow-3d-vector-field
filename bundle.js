@@ -34,11 +34,19 @@ var newp5 = new p5(function(sketch) {
 
           // this is frustrating that i'm having trouble combining p5 and browserify:
           var noiseVal = sketch.noise(scale * i * inc / num, scale * j * inc / num, scale * k * inc / num);
+          var noiseVal2 = sketch.noise(1 + scale * i * inc / num, -1 + scale * j * inc / num, 1 + scale * k * inc / num);
 
-          var geom = new THREE.SphereGeometry( inc / 15 );
+          var geom = new THREE.BoxGeometry( inc/ 15, inc/ 15, inc / 2);
+          // var geom = new THREE.SphereGeometry( inc / 15 );
           var sphere = new THREE.Mesh( geom, material2 );
+
           sphere.position.copy(pos);
           sphere.noiseValue = noiseVal;
+          sphere.noiseValue2 = noiseVal2;
+          sphere.rotation.x = noiseVal * 2 * Math.PI;
+          sphere.rotation.z = noiseVal2 * 2 * Math.PI;
+
+
 
           //oh how strange, these are entirely necessary: (or at least one is)
           sphere.receiveShadow = true;
