@@ -7,6 +7,8 @@ var p5 = require('./p5.js');
 var size = 2;
 var num = 15;
 var allSpheres = [];
+var color1 = new THREE.Color("rgb(255, 0, 20)");
+var material1 = new THREE.MeshLambertMaterial( { color: color1 } );
 var color2 = new THREE.Color("rgb(0, 0, 255)");
 var material2 = new THREE.MeshLambertMaterial( { color: color2 } );
 var pos = new THREE.Vector3();
@@ -34,6 +36,15 @@ var newp5 = new p5(function(sketch) {
           // this is frustrating that i'm having trouble combining p5 and browserify:
           var noiseVal = sketch.noise(scale * i * inc / num, scale * j * inc / num, scale * k * inc / num);
           var noiseVal2 = sketch.noise(1 + scale * i * inc / num, -1 + scale * j * inc / num, 1 + scale * k * inc / num);
+          var noiseVal3 = sketch.noise(-1 + scale * i * inc / num, 1 + scale * j * inc / num, -1 + scale * k * inc / num);
+
+
+          var geomCone = new THREE.ConeGeometry( inc/ 28, inc / 11);
+          var cone = new THREE.Mesh( geomCone, material1 );
+          cone.position.copy(pos);
+          cone.position.z += inc / 3.3;
+          cone.rotation.x = Math.PI / 2;
+
 
           var geom = new THREE.BoxGeometry( inc/ 15, inc/ 15, inc / 2);
           // var geom = new THREE.SphereGeometry( inc / 15 );
@@ -43,6 +54,7 @@ var newp5 = new p5(function(sketch) {
           sphere.noiseValue = noiseVal;
           sphere.noiseValue2 = noiseVal2;
           sphere.rotation.x = noiseVal * 2 * Math.PI;
+          sphere.rotation.y = noiseVal3 * 2 * Math.PI;
           sphere.rotation.z = noiseVal2 * 2 * Math.PI;
 
 
@@ -51,6 +63,10 @@ var newp5 = new p5(function(sketch) {
           sphere.receiveShadow = true;
           sphere.castShadow = true;
           scene.add(sphere);
+
+          cone.receiveShadow = true;
+          cone.castShadow = true;
+          scene.add(cone);
 
           allSpheres.push(sphere);
         }
