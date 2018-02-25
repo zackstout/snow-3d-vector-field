@@ -67,7 +67,7 @@ var newp5 = new p5(function(sketch) {
 
           cone.receiveShadow = true;
           cone.castShadow = true;
-          scene.add(cone);
+          // scene.add(cone);
 
           allSpheres.push(sphere);
         }
